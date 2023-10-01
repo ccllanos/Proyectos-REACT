@@ -47,17 +47,17 @@ class MyApp extends React.Component {
   render() {
     const { bgColor } = this.state;
     return (
-      <div style={{ backgroundColor: this.state.bgColor  }}>
+      <div style={{ backgroundColor: this.state.bgColor  }} id="quote-box">
         <div>
           <h1>Random Quote Machine</h1>
-          <button onClick={() => this.getQuote()}>Get Random Quote</button>
+          <button onClick={() => this.getQuote()} id="new-quote">Get Random Quote</button>
           <a id="tweet-quote" href="#" onClick={() => this.shareToTwitter()}>
             <FontAwesomeIcon icon={faTwitter} />
           </a>
         </div>
         <div>
-          <p>{this.state.quote.text}</p>
-          <p>- {this.state.quote.author}</p>
+          <p id="text">{this.state.quote.text}</p>
+          <p id="author">- {this.state.quote.author}</p>
         </div>
       </div>
     );
