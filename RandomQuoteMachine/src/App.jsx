@@ -18,22 +18,31 @@ class MyApp extends React.Component {
   }
 
   // Function to fetch a random quote from an API
-  getQuote() {
-    // You can make an API request here and update the state with the retrieved quote
-    // For this example, I'll use a placeholder quote
-    const placeholderQuote = {
-      author: 'John Doe',
-      text: 'This is a random quote.'
-    };
+  async getQuote() {
+    try {
+        const response = await fetch('https://type.fit/api/quotes');
+        const data = await response.json();
+        const index = Math.floor(Math.random() * data.length);
 
-    // Generate a random background color
-    const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+        let author = data[index].author;
+        // Elimina ", type.fit" del autor si está presente
+        author = author.replace(', type.fit', '');
 
-    this.setState({
-      quote: placeholderQuote,
-      bgColor: randomColor // Update the background color
-    });
-  }
+        const newQuote = {
+            author: author,
+            text: data[index].text
+        };
+
+        const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+
+        this.setState({
+            quote: newQuote,
+            bgColor: randomColor
+        });
+    } catch (error) {
+        console.error('Error fetching quote:', error);
+    }
+}
 
   shareToTwitter() {
     // Construct the tweet URL with the current quote and author
