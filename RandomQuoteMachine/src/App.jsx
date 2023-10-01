@@ -1,14 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      Hola Mundo
-    </>
-  )
+class MyApp extends Component {
+  constructor(props) {
+    super(props);
+  }
+  state = { 
+    quote: {
+      author: '',
+      text: ''
+    }
+   };
+  render() { 
+    return (  );
+  }
 }
-
-export default App
+ 
+export default MyApp;
