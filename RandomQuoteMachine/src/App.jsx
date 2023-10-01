@@ -1,7 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { useState } from 'react'
 import './App.css'
 
-class MyApp extends Component {
+class MyApp extends React.Component {
   constructor(props) {
     super(props);
   }
