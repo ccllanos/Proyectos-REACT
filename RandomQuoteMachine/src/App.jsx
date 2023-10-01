@@ -44,14 +44,14 @@ class MyApp extends React.Component {
     }
 }
 
-  shareToTwitter() {
-    // Construct the tweet URL with the current quote and author
-    const tweetText = `${this.state.quote.text} - ${this.state.quote.author}`;
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+shareToTwitter() {
+  // Construct the tweet URL with the current quote and author
+  const tweetText = `${this.state.quote.text} - ${this.state.quote.author}`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
 
-    // Open a new window to create a tweet
-    window.open(tweetUrl, '_blank');
-  }
+  // Open a new window to create a tweet
+  window.open(tweetUrl, '_blank');
+}
 
   render() {
     const { bgColor } = this.state;
@@ -60,9 +60,9 @@ class MyApp extends React.Component {
         <div>
           <h1>Random Quote Machine</h1>
           <button onClick={() => this.getQuote()} id="new-quote">Get Random Quote</button>
-          <a id="tweet-quote" href="#" onClick={() => this.shareToTwitter()}>
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
+          <a id="tweet-quote" href="https://twitter.com/intent/tweet" onClick={(e) => { e.preventDefault(); this.shareToTwitter(); }}>
+          <FontAwesomeIcon icon={faTwitter} />
+        </a>
         </div>
         <div>
           <p id="text">{this.state.quote.text}</p>
