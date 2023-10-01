@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useState } from 'react'
-import './App.css'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import './App.css';
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -33,14 +35,25 @@ class MyApp extends React.Component {
     });
   }
 
+  shareToTwitter() {
+    // Construct the tweet URL with the current quote and author
+    const tweetText = `${this.state.quote.text} - ${this.state.quote.author}`;
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+
+    // Open a new window to create a tweet
+    window.open(tweetUrl, '_blank');
+  }
+
   render() {
     const { bgColor } = this.state;
-
     return (
       <div style={{ backgroundColor: this.state.bgColor  }}>
         <div>
           <h1>Random Quote Machine</h1>
           <button onClick={() => this.getQuote()}>Get Random Quote</button>
+          <a id="tweet-quote" href="#" onClick={() => this.shareToTwitter()}>
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
         </div>
         <div>
           <p>{this.state.quote.text}</p>
