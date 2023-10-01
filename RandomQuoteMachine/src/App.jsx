@@ -6,15 +6,17 @@ import './App.css'
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      quote: {
+        author: '',
+        text: ''
+      },
+      bgColor: '#ffffff' // Initial background color
+    };
   }
-  state = { 
-    quote: {
-      author: '',
-      text: ''
-    }
-   };
 
-   getQuote() {
+  // Function to fetch a random quote from an API
+  getQuote() {
     // You can make an API request here and update the state with the retrieved quote
     // For this example, I'll use a placeholder quote
     const placeholderQuote = {
@@ -22,13 +24,20 @@ class MyApp extends React.Component {
       text: 'This is a random quote.'
     };
 
-    this.setState({ quote: placeholderQuote });
+    // Generate a random background color
+    const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+
+    this.setState({
+      quote: placeholderQuote,
+      bgColor: randomColor // Update the background color
+    });
   }
 
+  render() {
+    const { bgColor } = this.state;
 
-  render() { 
-    return ( 
-      <div>
+    return (
+      <div style={{ backgroundColor: this.state.bgColor  }}>
         <div>
           <h1>Random Quote Machine</h1>
           <button onClick={() => this.getQuote()}>Get Random Quote</button>
@@ -38,7 +47,7 @@ class MyApp extends React.Component {
           <p>- {this.state.quote.author}</p>
         </div>
       </div>
-     );
+    );
   }
 }
  
